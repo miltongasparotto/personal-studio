@@ -6,6 +6,14 @@
 <title>Consultoria de Treino Online e Presencial | Personal Studio — Milton Gasparotto</title>
 <meta name="description" content="Consultoria de treino com Milton Gasparotto, CREF 025639-G/PR. Presencial em Paranavaí ou 100% online para todo o Brasil. Garantia de 30 dias.">
 <link rel="canonical" href="https://miltongasparotto.github.io/personal-studio/consultoria.html">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LJ4K3F564Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LJ4K3F564Y');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=DM+Sans:wght@400;500;700&display=swap">
   <script>
     !function(f,b,e,v,n,t,s)
@@ -59,7 +67,8 @@
   /* topo */
   .topo{position:sticky;top:0;z-index:50;background:rgba(251,250,248,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light)}
   .topo-inner{display:flex;align-items:center;justify-content:space-between;padding:14px clamp(18px,5vw,36px);max-width:1080px;margin:0 auto}
-  .wordmark{font-family:'Newsreader',Georgia,serif;font-size:1.28rem;color:var(--ink);text-decoration:none}
+  .wordmark{display:inline-flex;align-items:center;gap:9px;font-family:'Newsreader',Georgia,serif;font-size:1.28rem;color:var(--ink);text-decoration:none}
+  .wordmark img{height:36px;width:auto;display:block}
   .wordmark em{font-style:normal;color:var(--accent)}
   .btn-nav{
     display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;
@@ -201,12 +210,27 @@
   /* image full width no-text */
   .foto-full{border-radius:14px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/8}
   .foto-full img{width:100%;height:100%;object-fit:cover}
+
+  /* quiz */
+  .quiz-overlay{position:fixed;inset:0;background:rgba(27,26,23,.55);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
+  .quiz-overlay[hidden]{display:none}
+  .quiz-card{background:#fff;border-radius:16px;max-width:480px;width:100%;padding:32px 28px;position:relative;max-height:90vh;overflow-y:auto}
+  .quiz-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:26px;line-height:1;color:var(--text-dim);cursor:pointer;padding:4px}
+  .quiz-progress{height:4px;background:var(--border-light);border-radius:2px;overflow:hidden;margin-bottom:1.6rem}
+  .quiz-progress-bar{height:100%;width:0;background:var(--accent);transition:width .25s}
+  .quiz-q{font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:21px;color:var(--ink);margin-bottom:1.3rem;line-height:1.3}
+  .quiz-options{display:flex;flex-direction:column;gap:10px}
+  .quiz-opt{display:block;width:100%;text-align:left;padding:14px 18px;border:1px solid var(--btn-border);border-radius:10px;background:#fff;font-family:'DM Sans',sans-serif;font-size:15.5px;color:var(--ink);cursor:pointer;transition:border-color .2s,background .2s}
+  .quiz-opt:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .quiz-final{text-align:center}
+  .quiz-final .btn-primary{margin-top:1.2rem}
+  .quiz-note{font-size:13.5px;color:var(--text-dim);text-align:center;margin:0 0 1.1rem}
 </style>
 </head>
 <body>
 <div class="topo">
   <div class="topo-inner">
-    <a href="index.html" class="wordmark">Personal <em>Studio</em></a>
+    <a href="index.html" class="wordmark"><img src="fotos/logo.png" alt="Personal Studio">Personal <em>Studio</em></a>
     <a href="https://wa.me/5544991723451?text=Ol%C3%A1%20Milton%21%20J%C3%A1%20decidi%2C%20quero%20come%C3%A7ar%20a%20consultoria." class="btn-nav" onclick="px('CTA','Topo consultoria')" target="_blank" rel="noopener">Começar</a>
   </div>
 </div>
@@ -216,8 +240,8 @@
     <div class="h1">Direcionamento profissional pra sair da estagnação — onde você estiver.</div>
     <p class="lead">Avaliação real, plano prescrito com base em dados e reavaliação constante — presencial no studio ou 100% online, de qualquer lugar do Brasil.</p>
     <div class="btns-row" style="margin-top:1.6rem">
-      <a href="https://wa.me/5544991723451?text=Ol%C3%A1%20Milton%21%20J%C3%A1%20decidi%2C%20quero%20come%C3%A7ar%20a%20consultoria." class="btn-primary" onclick="px('WhatsApp','Hero consultoria - pronto')" target="_blank" rel="noopener">Começar consultoria</a>
-      <a href="https://wa.me/5544991723451?text=Ol%C3%A1%20Milton%21%20Tenho%20d%C3%BAvidas%20sobre%20a%20consultoria." class="btn-secondary" onclick="px('WhatsApp','Hero consultoria - duvida')" target="_blank" rel="noopener">Tirar dúvidas</a>
+      <button type="button" class="btn-primary" onclick="openQuiz('Hero consultoria - pronto','Já decidi, quero começar a consultoria.')">Começar consultoria</button>
+      <a href="#faq" class="btn-secondary">Tirar dúvidas</a>
     </div>
   </div>
 </section>
@@ -226,7 +250,7 @@
     <span class="microlabel">CREF 025639-G/PR</span><span class="microlabel">·</span>
     <span class="microlabel">Pós-graduado em hipertrofia e emagrecimento</span><span class="microlabel">·</span>
     <span class="microlabel">Especialista em Correção Postural, Anatomia e Biomecânica</span><span class="microlabel">·</span>
-    <span class="microlabel">Mais de 12 anos como Personal</span>
+    <span class="microlabel">Mais de 10 anos como Personal</span>
   </div>
 </div>
 <section class="section"><div class="container"><div style="max-width:760px">
@@ -254,7 +278,7 @@
     <div class="sobre-img"><img src="fotos/milton-retrato.png" alt="Milton Gasparotto" style="width:100%;height:100%;object-fit:cover"></div>
     <div>
       <div class="h2">Quem conduz o método</div>
-      <p>O método foi desenvolvido por Milton Gasparotto, CREF 025639-G/PR, pós-graduado em hipertrofia e emagrecimento e especialista em Correção Postural, Anatomia e Biomecânica, com mais de 12 anos de atuação como personal trainer.</p>
+      <p>O método foi desenvolvido por Milton Gasparotto, CREF 025639-G/PR, pós-graduado em hipertrofia e emagrecimento e especialista em Correção Postural, Anatomia e Biomecânica, com mais de 10 anos de atuação como personal trainer.</p>
     </div>
   </div></div></section>
 <section class="section section--alt"><div class="container"><div style="margin-bottom:2.2rem"><div class="h2">Quem já treina, conta</div></div><div style="margin-bottom:1.8rem"><a href="https://www.google.com/maps/place/Personal+Studio+l+Milton+Gasparotto+l+Paranava%C3%AD/@-23.0801269,-52.4648613,17z" target="_blank" rel="noopener" onclick="px('Google','Ver no Google')" class="google-badge">
@@ -277,7 +301,7 @@
       <div class="num-big" style="font-size:1.8rem">R$ 142<span style="font-size:.9rem;color:var(--text-dim)">/mês</span></div>
       <p class="aux" style="margin-top:.2rem">Plano anual · garantia de 30 dias</p>
     </div>
-    <a href="https://wa.me/5544991723451?text=Ol%C3%A1%20Milton%21%20Tenho%20interesse%20na%20Consultoria%20Presencial." class="btn-secondary" style="margin-top:.4rem" onclick="px('WhatsApp','Card Consultoria Presencial')" target="_blank" rel="noopener">Quero a Presencial</a>
+    <button type="button" class="btn-secondary" style="margin-top:.4rem" onclick="openQuiz('Card Consultoria Presencial','Tenho interesse na Consultoria Presencial.','Presencial')">Quero a Presencial</button>
   </div>
   <div class="card">
     <div class="h3-serif">Consultoria Online</div>
@@ -285,16 +309,16 @@
     <ul><li>Avaliação e reavaliação por vídeo/formulário</li><li>Plano de treino personalizado</li><li>Suporte via chat</li><li>Acesso ao app exclusivo de treino, com vídeos de execução e controle completo de séries e carga</li></ul>
     <div class="card-price-row">
       <div class="card-price-label">A partir de</div>
-      <div class="num-big" style="font-size:1.8rem">R$ 97<span style="font-size:.9rem;color:var(--text-dim)">/mês</span></div>
+      <div class="num-big" style="font-size:1.8rem">R$ 94<span style="font-size:.9rem;color:var(--text-dim)">/mês</span></div>
       <p class="aux" style="margin-top:.2rem">Plano anual · garantia de 30 dias</p>
     </div>
-    <a href="https://wa.me/5544991723451?text=Ol%C3%A1%20Milton%21%20Tenho%20interesse%20na%20Consultoria%20Online." class="btn-secondary" style="margin-top:.4rem" onclick="px('WhatsApp','Card Consultoria Online')" target="_blank" rel="noopener">Quero a Online</a>
+    <button type="button" class="btn-secondary" style="margin-top:.4rem" onclick="openQuiz('Card Consultoria Online','Tenho interesse na Consultoria Online.','Online')">Quero a Online</button>
   </div>
 </div></div></section>
 <section class="section"><div class="container"><div style="max-width:640px;margin:0 auto;text-align:center">
   <p class="body-txt" style="margin:0 auto">Na dúvida entre as duas? A <strong>presencial</strong> é mais indicada se você nunca treinou, tem dor articular, prefere um contato mais próximo com o personal, ou já faz acompanhamento com endócrino, nutricionista ou nutrólogo — a avaliação presencial é mais completa e fica mais fácil de compartilhar com esses profissionais. Na <strong>online</strong>, tudo é remoto, do seu jeito, em qualquer cidade — indicada pra quem já tem experiência e quer direcionamento real.</p>
 </div></div></section>
-<section class="section"><div class="container"><div style="margin-bottom:2.2rem"><div class="h2">Perguntas frequentes</div></div>  <details class="faq-item"><summary>Qual a diferença entre a consultoria presencial e online?</summary><p>A diferença está na avaliação: na consultoria presencial, a avaliação e as reavaliações são feitas aqui no studio, pessoalmente. Na consultoria online, tudo isso — inclusive a avaliação — é feito à distância. Em ambas, o treino em si você faz onde preferir.</p></details>
+<section class="section" id="faq"><div class="container"><div style="margin-bottom:2.2rem"><div class="h2">Perguntas frequentes</div></div>  <details class="faq-item"><summary>Qual a diferença entre a consultoria presencial e online?</summary><p>A diferença está na avaliação: na consultoria presencial, a avaliação e as reavaliações são feitas aqui no studio, pessoalmente. Na consultoria online, tudo isso — inclusive a avaliação — é feito à distância. Em ambas, o treino em si você faz onde preferir.</p></details>
   <details class="faq-item"><summary>Preciso ter experiência para começar?</summary><p>É recomendado ter experiência com treinamento, já que o acompanhamento não é presencial em tempo real. Dúvidas são resolvidas por mensagem, e a correção de execução é feita a partir de vídeos que você envia para avaliação.</p></details>
   <details class="faq-item"><summary>A consultoria funciona para quem nunca treinou?</summary><p>É mais indicada para quem já tem experiência com treinamento. Para iniciantes, o Treino Presencial é o mais indicado, já que oferece supervisão direta em cada exercício.</p></details>
   <details class="faq-item"><summary>Em quanto tempo vejo resultado?</summary><p>No primeiro mês já se sente diferença em disposição e energia. Em 60 dias os resultados são observáveis. Entre 90 e 120 dias, consistentes e duradouros.</p></details>
@@ -302,8 +326,8 @@
   <details class="faq-item"><summary>Precisa parar de comer tudo para ter resultado?</summary><p>Não — essa é a crença errada mais comum. O resultado vem do equilíbrio entre treino, alimentação adequada e descanso. A metodologia não complica, se adapta à sua vida real.</p></details></div></section>
 <section class="section cta-final"><div class="container"><div class="h2">Pronto pra sair da estagnação?</div>
   <p>Comece hoje com uma avaliação real, um plano sob medida — e o acompanhamento que treino de internet nunca teve.</p>
-  <div class="btns-row"><a href="https://wa.me/5544991723451?text=Ol%C3%A1%20Milton%21%20J%C3%A1%20decidi%2C%20quero%20come%C3%A7ar%20a%20consultoria." class="btn-primary" onclick="px('WhatsApp','CTA final')" target="_blank" rel="noopener">Começar consultoria</a>
-    <a href="https://wa.me/5544991723451?text=Ol%C3%A1%20Milton%21%20Tenho%20d%C3%BAvidas%20sobre%20a%20consultoria." class="btn-secondary" onclick="px('WhatsApp','CTA final')" target="_blank" rel="noopener">Tirar dúvidas no WhatsApp</a></div></div></section>
+  <div class="btns-row"><button type="button" class="btn-primary" onclick="openQuiz('CTA final','Já decidi, quero começar a consultoria.')">Começar consultoria</button>
+    <a href="#faq" class="btn-secondary">Tirar dúvidas</a></div></div></section>
 <footer class="rodape">
   <div class="container rodape-inner">
     <span>CREF 025639-G/PR · Milton Gasparotto · Paranavaí, PR</span>
@@ -315,6 +339,14 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   WhatsApp
 </a>
+<div id="quizOverlay" class="quiz-overlay" hidden>
+  <div class="quiz-card">
+    <button type="button" class="quiz-close" aria-label="Fechar" onclick="closeQuiz()">&times;</button>
+    <p class="quiz-note">5 perguntas rápidas — no final, você já sai falando com o Milton no WhatsApp.</p>
+    <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+    <div id="quizBody"></div>
+  </div>
+</div>
 <script>
   function px(a,l){
     if(typeof fbq==='undefined')return;
@@ -322,6 +354,57 @@
     const ev=m[a]||['Lead',{content_name:l}];
     fbq('track',ev[0],ev[1]);
   }
+
+  /* quiz qualificador — consultoria */
+  const quizQuestions=[
+    {label:'Formato',q:'Prefere consultoria presencial ou online?',options:['Presencial','Online']},
+    {label:'Objetivo',q:'Qual seu objetivo principal?',options:['Emagrecer','Ganhar massa','Sair da estagnação','Saúde geral']},
+    {label:'Nível',q:'Já treina hoje ou tá começando do zero?',options:['Nunca treinei','Treino mas travei','Treino bem, quero otimizar']},
+    {label:'Consultoria antes',q:'Já fez consultoria de treino antes?',options:['Sim, já fiz','Não, nunca fiz']},
+    {label:'Acompanhamento profissional',q:'Acompanha endócrino, nutricionista ou nutrólogo?',options:['Sim','Não']},
+    {label:'Frequência',q:'Quantas vezes por semana pretende treinar?',options:['2x por semana','3x ou mais por semana']}
+  ];
+  let quizStep=0, quizAnswers=[], quizSource='', quizIntro='';
+  function openQuiz(source,intro,presetFormat){
+    quizSource=source; quizIntro=intro; quizStep=0; quizAnswers=[];
+    if(presetFormat){
+      quizAnswers.push('Formato: '+presetFormat+'.');
+      quizStep=1;
+    }
+    document.getElementById('quizOverlay').hidden=false;
+    document.body.style.overflow='hidden';
+    px('Lead','Quiz iniciado - '+source);
+    renderQuiz();
+  }
+  function closeQuiz(){
+    document.getElementById('quizOverlay').hidden=true;
+    document.body.style.overflow='';
+  }
+  function renderQuiz(){
+    const body=document.getElementById('quizBody');
+    const bar=document.getElementById('quizProgressBar');
+    const total=quizQuestions.length;
+    bar.style.width=(quizStep/total*100)+'%';
+    if(quizStep<total){
+      const item=quizQuestions[quizStep];
+      body.innerHTML='<div class="quiz-q">'+item.q+'</div><div class="quiz-options">'+
+        item.options.map((o,i)=>'<button type="button" class="quiz-opt" data-i="'+i+'">'+o+'</button>').join('')+'</div>';
+      body.querySelectorAll('.quiz-opt').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          quizAnswers.push(item.label+': '+item.options[+btn.dataset.i]+'.');
+          quizStep++;
+          renderQuiz();
+        });
+      });
+    } else {
+      bar.style.width='100%';
+      const msg=encodeURIComponent([quizIntro].concat(quizAnswers).join(' '));
+      const href='https://wa.me/5544991723451?text='+msg;
+      body.innerHTML='<div class="quiz-final"><div class="quiz-q">Perfeito! Já sei como te ajudar.</div><p class="aux">Toque abaixo pra continuar no WhatsApp com tudo já preenchido.</p><a href="'+href+'" id="quizFinishBtn" class="btn-primary" target="_blank" rel="noopener">Continuar no WhatsApp</a></div>';
+      document.getElementById('quizFinishBtn').addEventListener('click',function(){px('WhatsApp','Quiz finalizado - '+quizSource);});
+    }
+  }
+
   /* carrossel automático infinito das fotos do studio */
   document.querySelectorAll('.carrossel').forEach(function(wrap){
     const track=wrap.querySelector('.cr-track');
