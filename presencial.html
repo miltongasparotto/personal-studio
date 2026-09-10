@@ -31,6 +31,7 @@
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
+  html,body{max-width:100%;overflow-x:hidden}
   body{
     margin:0;background:var(--bg);color:var(--text);
     font-family:'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.62;
@@ -94,7 +95,7 @@
   /* credenciais */
   .credenciais{border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light);padding-block:1rem}
   .credenciais-row{display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:center;text-align:center}
-  .credenciais .microlabel{white-space:nowrap}
+  @media(min-width:640px){.credenciais .microlabel{white-space:nowrap}}
 
   /* dores — sempre 2 colunas x 2 linhas; 1 coluna no celular */
   .dores-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
